@@ -2,7 +2,7 @@
   <div>
     <pre
       v-highlightjs
-    ><code :class="language" :style="`font-size:${fontSize};`">{{ content }}</code></pre>
+    ><code :class="language" :style="`font-size:${fontSize};`"><span class="line" v-for="(line, i) in lines" :key="i">{{ line }}<br></span></code></pre>
   </div>
 </template>
 
@@ -13,16 +13,21 @@ export default {
   props: {
     content: {
       type: String,
-      default: "Enter a code to begin",
+      default: "",
     },
     fontSize: {
       type: String,
       default: "15px",
     },
+    lines: Array,
   },
   computed: {
     language() {
       return detectLang(this.content);
+    },
+    stringLength() {
+      console.log(this.lines.length);
+      return String(this.lines.length).length + "ch";
     },
   },
 };
@@ -37,6 +42,7 @@ div {
 
 pre {
   padding: 1.75rem;
+  padding-left: 0.25rem;
   text-align: left;
   margin: auto;
   width: 80vw;
@@ -44,5 +50,20 @@ pre {
   background: #23241f;
   color: white;
   border-radius: 0.3rem;
+}
+
+code {
+  counter-reset: line;
+}
+.line:before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  border-right: 1px solid #ddd;
+  padding: 0 0.5rem;
+  margin-right: 1rem;
+  color: #888;
+  width: v-bind("stringLength");
+  text-align: right;
 }
 </style>

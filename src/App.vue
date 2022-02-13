@@ -7,9 +7,11 @@
     />
     <Code
       :content="content"
+      :lines="lines"
       :cursorOffset="cursorOffset"
       :fontSize="fontSize"
       v-if="content.length > 0"
+      :key="rerender"
     />
     <Instructions :mode="instructionMode" v-else />
   </main>
@@ -38,7 +40,9 @@ export default {
   },
   data() {
     return {
+      rerender: 0,
       content: "",
+      lines: [],
       connected: false,
       instructionMode: "instructions",
       castId: null,
@@ -60,8 +64,11 @@ export default {
       console.log("Cast ID:", e.id);
     });
     socket.on("updateCast", (e) => {
+      console.log("updating", e.content);
       this.content = e.content;
+      this.lines = e.content.split("\n");
       this.cursorOffset = e.cursorPosition;
+      this.rerender++;
     });
   },
   methods: {
@@ -78,6 +85,7 @@ export default {
     },
     disconnect() {
       this.content = "";
+      this.lines = [];
       socket.disconnect();
     },
   },
