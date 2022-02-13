@@ -1,8 +1,7 @@
 <template>
   <div>
     <pre v-if="mode == 'instructions'"># <b>Welcome to Repl Broadcast</b>
-
-    Broadcast is an easy way to present your Replit projects without the pain of screensharing and those awful massive text sizes.  Get started by downloading the <a href="#">Chrome extension</a> and visiting a Repl.</pre>
+Broadcast is an easy way to present your Replit projects without the pain of screensharing and those awful massive text sizes.  Get started by downloading the <a href="#">Chrome extension</a> and visiting a Repl.</pre>
     <pre v-else># <b>You're connected!</b>
 
     Waiting for your host to type...</pre>
