@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "replbroadcast",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,11 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "vue": "^3.0.0"
+    "lang-detector": "^1.0.6",
+    "socket.io-client": "^4.4.1",
+    "vue": "^3.0.0",
+    "vue3-ace-editor": "^2.2.2",
+    "vue3-highlightjs": "^1.0.5"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
